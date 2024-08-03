@@ -1,0 +1,46 @@
+// Copyright 2022 EPFL
+// Solderpad Hardware License, Version 2.1, see LICENSE.md for details.
+// SPDX-License-Identifier: Apache-2.0 WITH SHL-2.1
+
+{ name: "hworld"
+  clock_primary: "clk_i"
+  reset_primary: "rst_ni"
+  bus_interfaces: [
+    { protocol: "reg_iface", direction: "device" }
+  ]
+  regwidth: "32"
+  registers: [
+  	{ name: "A",
+	  desc: "A operand",
+	  swaccess: "wo",
+	  hwaccess: "hro",
+	  fields: [
+		 {bits : "31:0", name: "A", desc: "operand A"}
+	  ]
+	},
+  	{ name: "B",
+	  desc: "B operand",
+	  swaccess: "wo",
+	  hwaccess: "hro",
+	  fields: [
+		 {bits : "31:0", name: "B", desc: "operand B"}
+	  ]
+	},
+	{ name: "SUM",
+	  desc: "result of sum",
+	  swaccess: "ro",
+	  hwaccess: "hwo",
+	  fields: [
+		 {bits : "31:0", name: "SUM", desc: "result of sum"}
+	  ]
+	},
+	{ name: "COUT",
+	  desc: "carry out",
+	  swaccess: "ro",
+	  hwaccess: "hwo",
+	  fields: [
+		 {bits : "0", name: "COUT", desc: "carry out"}
+	  ]
+	}
+  ]
+}

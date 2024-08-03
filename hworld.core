@@ -1,0 +1,26 @@
+CAPI=2:
+
+name: "hialus:ip:hworld"
+description: "Simulates a PDM input for the PDM2PCM peripheral"
+
+# Copyright 2022 EPFL
+# Solderpad Hardware License, Version 2.1, see LICENSE.md for details.
+# SPDX-License-Identifier: Apache-2.0 WITH SHL-2.1
+
+filesets:
+  depend:
+    - x-heep::packages
+    - pulp-platform.org::common_cells
+  files_rtl:
+    files:
+    - rtl/hworld.sv
+    - rtl/hworld_reg_top.sv
+    - rtl/hworld_reg_pkg.sv
+    - wrapper/hworld_top.sv
+
+    file_type: systemVerilogSource
+
+targets:
+  default:
+    filesets:
+    - files_rtl

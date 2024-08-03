@@ -5,8 +5,8 @@ module hworld_top
   (
     input logic clk_i,
     input logic rst_ni,
-    input reg_req_t reg_req_i,
-    output reg_rsp_t reg_rsp_o,
+    input obi_req_t reg_req_i,
+    output obi_rsp_t reg_rsp_o,
   );
 
   reg_req_t periph_req_i;   
@@ -18,6 +18,7 @@ module hworld_top
   wire logic [31:0] a, b, sum;
   wire logic cout;
 
+// practically a bridge from a obi type and reg type
   periph_to_reg #(
     .req_t(reg_pkg::reg_req_t),   
     .rsp_t(reg_pkg::reg_rsp_t),
@@ -48,9 +49,9 @@ module hworld_top
      .rst_ni,
      .devmode_i(1'b1),
      // From the bus to regfile
-     .reg_req_i(reg_req_i),
-     .reg_rsp_o(reg_rsp_o),
-     // Signals from regfile to keccak IP
+     .reg_req_i(periph_req_i),
+     .reg_rsp_o(periph_rsp_o),
+     // Signals from regfile to hworld IP
      .reg2hw(reg_to_ip),
      .hw2reg(ip_to_reg) 
   );

@@ -6,14 +6,14 @@ module hworld_top
     input logic clk_i,
     input logic rst_ni,
     input obi_req_t reg_req_i,
-    output obi_rsp_t reg_rsp_o,
+    output obi_resp_t reg_rsp_o
   );
 
   reg_req_t periph_req_i;   
   reg_rsp_t periph_rsp_o;
 
   hworld_reg2hw_t reg_to_ip;
-  hworld_data_hw2reg_t ip_to_reg;   
+  hworld_hw2reg_t ip_to_reg;   
   
   wire logic [31:0] a, b, sum;
   wire logic cout;
@@ -64,7 +64,7 @@ module hworld_top
     .b(b),
     .sum(sum),
     .carry_out(cout)
-  )
+  );
 
   assign ip_to_reg.sum = sum;
   assign ip_to_reg.cout = cout;

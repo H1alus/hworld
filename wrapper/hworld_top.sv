@@ -18,7 +18,7 @@ module hworld_top
   wire logic [31:0] a, b, sum;
   wire logic cout;
 
-// practically a bridge from a obi type and reg type
+// practically a cast from a obi type to reg type
   periph_to_reg #(
     .req_t(reg_pkg::reg_req_t),   
     .rsp_t(reg_pkg::reg_rsp_t),
@@ -66,7 +66,7 @@ module hworld_top
     .carry_out(cout)
   );
 
-  assign ip_to_reg.sum = sum;
-  assign ip_to_reg.cout = cout;
+  assign ip_to_reg.sum.d = sum;
+  assign ip_to_reg.cout.d = cout;
 
 endmodule: hworld_top
